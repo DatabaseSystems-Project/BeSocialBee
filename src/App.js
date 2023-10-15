@@ -7,8 +7,6 @@ function App() {
     <HashRouter>
         <Routes>
           <Route exact path="/" element={<Login />}/>
-          <Route exact path="/" element={<Home />}/>
-          
         </Routes>
     </HashRouter>
 

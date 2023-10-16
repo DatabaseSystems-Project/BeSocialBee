@@ -5,7 +5,7 @@ const bodyParser=require('body-parser'); //used to parse the body of incoming HT
 
 
 const app=express();
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 
 const db = mysql.createConnection({
@@ -16,22 +16,7 @@ const db = mysql.createConnection({
     database:"beedatabase"
 });
 
- app.listen(3306,()=>{
-        console.log('Port Connected.');
-    })
-
-/* app.get('/',(req,res)=>{
-    var {name,email,password} = req.body;
-    var records = [[req.body.name,req.body.email,req.body.password]];
-    if(records[0][0][0]!=null){
-        db.query("INSERT into user values(name,email,password)",[records],function(err,res,fields){
-            if(err) throw err;
-            console.log(res);
-        });
-    }
-    res.json('Form Received');
-}) */
-
+ 
 
 // database connection 
 db.connect((err) => {
@@ -66,12 +51,25 @@ db.connect((err) => {
     //});
 });
 
-// Serve the HTML form
-app.use(express.static('public'));
 
-app.post('/submit',(req,res)=>{
-    var {name,email,password} = req.body;
+//----------------------------------------------------------------------------------------------------------
+app.listen(3306,()=>{
+    console.log('Port Connected.');
+})
+
+
+app.get('/submit-form', function (req, res,next) { //when page has been load in the browser, this get function will be called
+    //if your HTML file is in the root directory (next to package.json)
+        res.send('components/Login.css');
+}); 
+
+
+app.post('/submit-form',(req,res,next)=>{
+    res.send(req.body);
+    /*var {name,email,password} = req.body;
     var values = [name,email,password];
+    console.log(values);
+
     if(values[0]!=null && values[1]!=null && values[2]!=null){
         db.query("INSERT into users (name,email,password) VALUES (?, ?, ?)",values,function(err,res,fields){
             if(err) throw err;
@@ -79,10 +77,24 @@ app.post('/submit',(req,res)=>{
             res.redirect('/'); // Redirect to the form page
         });
     }
-    res.json('Form Received');
-
-   
+    res.json('Form Received'); */
 })
+
+
+
+//----------------------------------------------------------------------------------------------------------
+/*
+app.post('/',(req,res)=>{
+    var {name,email,password} = req.body;
+    var records = [[name,email,password]];
+    if(records[0][0][0]!=null){
+        db.query("INSERT into user (name,email,password) values(?,?,?)",[records],function(err,res,fields){
+            if(err) throw err;
+            console.log(res);
+        });
+    }
+    res.json('Form Received');
+})*/
 
 
 

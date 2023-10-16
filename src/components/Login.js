@@ -13,7 +13,7 @@ const Login = () => {
             <h1>&nbsp;&nbsp;Merhaba !</h1>
             <h3>&nbsp;&nbsp;&nbsp;&nbsp; Sen de bu deneyimi paylaşmak ve harika içerikler keşfetmek istemez misin? Web sitemize katılarak bu fırsatı kaçırma.</h3>
         </div>
-        <form action="/submit" method="post">
+        <form action="/submit-form" method="post">
         <div className="rightpart">
                 <div className="header">
                     <div className="text">{action}</div>
@@ -36,8 +36,8 @@ const Login = () => {
                 </div>
                 {action==="Sign Up"?<div></div>:<div className="forgot-password">Forget Password?<span> Click Here!</span></div>}
                 <div className="submit-container">
-                    <div className={action==="Login"?"submit gray":"submit"}onClick={()=>{setAction("Sign Up")}}>Sign Up</div>
-                    <div className={action==="Sign Up"?"submit gray":"submit"}onClick={()=>{setAction("Login")}}>Login</div>
+                    <button type="submit" className={action==="Login"?"submit gray":"submit"}onClick={()=>{setAction("Sign Up")}}>Sign Up</button>
+                    <button type="submit" className={action==="Sign Up"?"submit gray":"submit"}onClick={()=>{setAction("Login")}}>Login</button>
                 </div>
             </div>
             </form>

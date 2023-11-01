@@ -8,15 +8,19 @@ const app=express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 
+
+
+//---------------------------------------------- DATABASE ------------------------------------------------------------
+
+
 const db = mysql.createConnection({
     host:"database-3.ciqpxqolslw4.eu-north-1.rds.amazonaws.com",
-    port:"3306",
+    port:"3306", //
     user:"master",
     password:"masterpassword",
     database:"beedatabase"
 });
 
- 
 
 // database connection 
 db.connect((err) => {
@@ -53,32 +57,44 @@ db.connect((err) => {
 
 
 //----------------------------------------------------------------------------------------------------------
-app.listen(3306,()=>{
+// Middleware to parse incoming JSON data
+app.use(express.json());
+
+app.listen(3001,()=>{
     console.log('Port Connected.');
 })
 
 
-app.get('/submit-form', function (req, res,next) { //when page has been load in the browser, this get function will be called
+app.get('/submitform', function (req, res) { //when page has been load in the browser, this get function will be called
     //if your HTML file is in the root directory (next to package.json)
         res.send('components/Login.css');
 }); 
 
 
-app.post('/submit-form',(req,res,next)=>{
-    res.send(req.body);
-    /*var {name,email,password} = req.body;
-    var values = [name,email,password];
-    console.log(values);
+var values = [];
+app.post('/submitform',(req,res)=>{
+    //res.send(req.body);
+    var {name,email,password} = req.body;
+    values = [name,email,password];
+    //console.log(values);
+    console.log('Data is received.');
+    res.json('Form Received'); 
 
+
+    console.log(values[0],values[1],values[2]);
     if(values[0]!=null && values[1]!=null && values[2]!=null){
-        db.query("INSERT into users (name,email,password) VALUES (?, ?, ?)",values,function(err,res,fields){
-            if(err) throw err;
-            console.log(res);
-            res.redirect('/'); // Redirect to the form page
+        console.log('bbbbbbb');
+        app.listen(3001,()=>{
+            console.log('Port Connected.');
+        })
+
+        db.query("INSERT into users (name,email,password) VALUES (?, ?, ?)",values,(err,res)=>{
+            if (err) console.error('Error inserting data into the database: ' + err);
+            //res.redirect('/'); // Redirect to the form page
         });
     }
-    res.json('Form Received'); */
-})
+});
+
 
 
 

@@ -21,7 +21,7 @@ const UserPage = () => {
         <a href={user.achievementsLink}>Achievements Page</a>
       </p>
       <p>
-        <a href={user.cardsLink}>Showcase Cardss</a>
+        <a href={user.cardsLink}>Showcase Cards</a>
       </p>
     </div>
   );

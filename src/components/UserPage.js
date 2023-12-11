@@ -4,7 +4,7 @@ const UserPage = () => {
   // Replace this with your user data
   const user = {
     username: 'example_user',
-    followers: 1000,
+    followers: 10000,
     achievementsLink: '/achievements',
     cardsLink: '/cards',
     // Assuming your images are stored in the public folder

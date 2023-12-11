@@ -18,7 +18,7 @@ const UserPage = () => {
       <h2>{user.username}</h2>
       <p>Followers: {user.followers}</p>
       <p>
-        <a href={user.achievementsLink}>Achievements Page</a>
+        <a href={user.achievementsLink}>Achievements Pagee</a>
       </p>
       <p>
         <a href={user.cardsLink}>Showcase Cards</a>

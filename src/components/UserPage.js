@@ -18,10 +18,10 @@ const UserPage = () => {
       <h2>{user.username}</h2>
       <p>Followers: {user.followers}</p>
       <p>
-        <a href={user.achievementsLink}>Achievements Pagee</a>
+        <a href={user.achievementsLink}>Achievements Page</a>
       </p>
       <p>
-        <a href={user.cardsLink}>Showcase Cards</a>
+        <a href={user.cardsLink}>Showcase Cardss</a>
       </p>
     </div>
   );
